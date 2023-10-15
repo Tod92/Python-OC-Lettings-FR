@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from django.urls import path, include
 from . import views
 from lettings.urls import lettings_patterns
 from profiles.urls import profiles_patterns
