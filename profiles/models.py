@@ -1,3 +1,7 @@
+"""
+Contains models for app "profiles" : Profile
+User model imported from Django without modifications
+"""
 from django.db import models
 from django.contrib.auth.models import User
 

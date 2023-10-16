@@ -1,3 +1,8 @@
+"""
+Contains Django project's routes.
+App's routes imported here. See app_name/urls.py
+Overriding default 404 and 500 errors pages
+"""
 from django.contrib import admin
 from django.urls import path, include
 

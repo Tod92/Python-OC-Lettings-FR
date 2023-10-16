@@ -1,3 +1,7 @@
+"""
+Django project's level views.
+Contains site entry point and custom errors pages
+"""
 from django.shortcuts import render
 
 

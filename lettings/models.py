@@ -1,3 +1,6 @@
+"""
+Contains models for app "lettings" : Address & Letting
+"""
 from django.db import models
 from django.core.validators import MaxValueValidator, MinLengthValidator
 
@@ -6,6 +9,7 @@ class Address(models.Model):
     """
     Django model mapped to sqlite database
     Address used for Letting's object (one-to-one)
+    Pluralization managed with Meta class
     """
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
