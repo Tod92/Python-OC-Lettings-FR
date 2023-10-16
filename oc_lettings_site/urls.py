@@ -11,5 +11,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('lettings/', include(lettings_patterns)),
     path('profiles/', include(profiles_patterns))
-
 ]
+
+handler404 = 'oc_lettings_site.views.custom_404'
