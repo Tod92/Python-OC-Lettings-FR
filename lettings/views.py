@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from lettings.models import Letting
 
-# Create your views here.
 
 def index(request):
     lettings_list = Letting.objects.all()
