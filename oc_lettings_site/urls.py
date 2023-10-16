@@ -14,3 +14,5 @@ urlpatterns = [
 ]
 
 handler404 = 'oc_lettings_site.views.custom_404'
+
+handler500 = 'oc_lettings_site.views.custom_500'
