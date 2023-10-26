@@ -1,6 +1,6 @@
 import pytest
 from profiles.models import Profile, User
-from django.urls import reverse, resolve
+from django.urls import reverse
 
 
 @pytest.fixture
@@ -9,13 +9,15 @@ def create_user():
         username='toto'
     )
 
+
 @pytest.fixture
 def create_profile(create_user):
     user = User.objects.get(id=1)
     Profile.objects.create(
-        favorite_city = 'paris',
+        favorite_city='paris',
         user=user
     )
+
 
 @pytest.mark.django_db
 class TestModels:
@@ -24,18 +26,20 @@ class TestModels:
         user = User.objects.get(id=1)
         expected_value = 'toto'
         assert str(user) == expected_value
- 
+
     def test_create_profile(self, create_profile):
         profile = Profile.objects.get(id=1)
         expected_value = 'toto'
         assert str(profile) == expected_value
 
+
 @pytest.mark.django_db
 class TestUrls:
 
     def test_profile_info_url(self, create_profile):
-        path = reverse('profile', kwargs=({'username':'toto'}))
+        path = reverse('profile', kwargs=({'username': 'toto'}))
         assert path == '/profiles/toto/'
+
 
 @pytest.mark.django_db
 class TestHttpResponse:

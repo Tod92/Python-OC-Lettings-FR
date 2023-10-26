@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from lettings.models import Letting
 
+
 def index(request):
     """
     Lettings page listing all Lettings objects in database

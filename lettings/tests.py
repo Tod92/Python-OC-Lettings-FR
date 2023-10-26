@@ -14,13 +14,15 @@ def create_address():
         country_iso_code='fra'
     )
 
+
 @pytest.fixture
 def create_letting(create_address):
     address = Address.objects.get(id=1)
     Letting.objects.create(
-        title = 'grande maison',
+        title='grande maison',
         address=address
     )
+
 
 @pytest.mark.django_db
 class TestModels:
@@ -29,18 +31,20 @@ class TestModels:
         address = Address.objects.get(id=1)
         expected_value = '1 avenue de la république'
         assert str(address) == expected_value
- 
+
     def test_create_letting(self, create_letting):
         letting = Letting.objects.get(id=1)
         expected_value = 'grande maison'
         assert str(letting) == expected_value
 
+
 @pytest.mark.django_db
 class TestUrls:
 
     def test_letting_info_url(self, create_letting):
-        path = reverse('letting', kwargs=({'letting_id':1}))
+        path = reverse('letting', kwargs=({'letting_id': 1}))
         assert path == '/lettings/1/'
+
 
 @pytest.mark.django_db
 class TestHttpResponse:
@@ -63,4 +67,3 @@ class TestHttpResponse:
         """
         with pytest.raises(Letting.DoesNotExist):
             client.get('/lettings/1/')
-

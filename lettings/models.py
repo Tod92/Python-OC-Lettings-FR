@@ -24,6 +24,7 @@ class Address(models.Model):
     class Meta:
         verbose_name_plural = 'Addresses'
 
+
 class Letting(models.Model):
     """
     Django model mapped to sqlite database

@@ -21,6 +21,3 @@ class TestResponse:
     def test_profiles_index_should_status_code_ok(self, client):
         response = client.get('/profiles/')
         assert response.status_code == 200
-
-
-
