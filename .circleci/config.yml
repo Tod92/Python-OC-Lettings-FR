@@ -17,6 +17,20 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  test-and-lint:
+    docker:
+      - image: cimg/python:3.10.1
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: pip install -r requirements.txt
+      - run:
+          name: lint
+          command: flake8
+      - run:
+          name: run tests
+          command: pytest
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -24,3 +38,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+  build-and-test-workflow:
+    jobs:
+      - test-and-lint
