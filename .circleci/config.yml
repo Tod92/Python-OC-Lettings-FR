@@ -44,7 +44,7 @@ jobs:
           name: Push Docker image
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker push IMAGE_TAG:latest
+            docker push $IMAGE_TAG:latest
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
