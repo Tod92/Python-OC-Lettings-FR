@@ -54,10 +54,10 @@ workflows:
       - build-docker:
           requires:
             - unit-tests-and-linter
-      - deploy-to-host:
-          requires:
-            - push-docker
-          filters:
-            branches:
-              only:
-                - main
+      # - deploy-to-host:
+      #     requires:
+      #       - push-docker
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
