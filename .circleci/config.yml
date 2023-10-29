@@ -7,7 +7,7 @@ executors:
   docker-publisher:
     # Define the image tag
     environment:
-      IMAGE_TAG: tod92/oc-lettings:latest
+      IMAGE_TAG: tod92/oc-lettings
     # Use `docker:stable` as the Docker image for this executor
     docker:
       - image: docker:stable
@@ -36,14 +36,15 @@ jobs:
       - checkout
       # Set up a separate Docker environment to run `docker` commands in
       - setup_remote_docker
-      # Build the hello world image
       - run:
-          name: Build and push Docker image
+          name: Build Docker image
+          command:
+            docker build --tag $IMAGE_TAG .
+      - run:
+          name: Push Docker image
           command: |
-            echo “${DOCKERHUB_PASS}” | docker login -u “${DOCKERHUB_USERNAME}” --password-stdin
-            docker build --tag "${IMAGE_TAG}" .
-            docker push ${IMAGE_TAG}:latest
-
+            echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            docker push IMAGE_TAG:latest
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
