@@ -24,12 +24,7 @@ jobs:
           name: run tests
           command: pytest
   aws-ecr/build-and-push-image:
-    context: aws-dev
-    create-repo: true
-    dockerfile: Dockerfile
-    path: .
-    repo: circleci-ecr-demo
-    tag: "$CIRCLE_SHA1"
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -45,3 +40,9 @@ workflows:
           branches:
             only:
               - master
+        context: aws-dev
+        create-repo: true
+        dockerfile: Dockerfile
+        path: .
+        repo: circleci-ecr-demo
+        tag: "$CIRCLE_SHA1"
