@@ -53,7 +53,7 @@ workflows:
       - test-and-lint
       - build-docker:
           requires:
-            - unit-tests-and-linter
+            - test-and-lint
       # - deploy-to-host:
       #     requires:
       #       - push-docker
