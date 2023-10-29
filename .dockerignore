@@ -1,0 +1,5 @@
+.git
+.venv
+.circleci
+.pytest_cache
+
