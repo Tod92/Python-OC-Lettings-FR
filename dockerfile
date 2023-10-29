@@ -5,7 +5,9 @@ FROM python:3.11-alpine
 WORKDIR /usr/src/app
 
 # set environment variables
+# Prevents Python from copying pyc files to the container.
 ENV PYTHONDONTWRITEBYTECODE 1
+# Ensures that Python output is logged to the terminal.
 ENV PYTHONUNBUFFERED 1
 
 # copy project
@@ -16,7 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # generate static files
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
