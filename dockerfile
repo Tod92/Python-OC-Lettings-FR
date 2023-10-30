@@ -18,7 +18,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # generate static files
-# RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
