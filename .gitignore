@@ -2,5 +2,3 @@
 *.pyc
 venv
 .env
-dockerfile
-.dockerignore
