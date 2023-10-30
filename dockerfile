@@ -18,7 +18,9 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # generate static files
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
+# Error whil trying to generate staticfiles dir with circleci : can't reach env variable SECRET_KEY
+# Passing staticfiles dir for now
 
 EXPOSE 8000
 
