@@ -49,6 +49,7 @@ jobs:
   deploy:
     docker:
       - image: docker:stable
+    steps:
       - checkout
       - run :
           name: Build and push Docker image to Heroku
