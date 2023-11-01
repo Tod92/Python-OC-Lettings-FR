@@ -20,9 +20,9 @@ RUN pip install -r requirements.txt
 # generate static files
 # RUN python manage.py collectstatic --noinput
 # Error whil trying to generate staticfiles dir with circleci : can't reach env variable SECRET_KEY
-# Passing staticfiles dir for now
+# Passing staticfiles directory for now
 
-EXPOSE 80
+EXPOSE $PORT
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:$PORT"]
 # CMD gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:8000
