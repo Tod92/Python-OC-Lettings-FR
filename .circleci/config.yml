@@ -2,7 +2,6 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-
 # Define a common Docker container and environment for jobs
 executors:
   docker-publisher:
@@ -64,11 +63,11 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - master
       - heroku/deploy-via-git:  
           requires:
             - build-docker
           filters:
             branches:
               only:
-                - main
+                - master
