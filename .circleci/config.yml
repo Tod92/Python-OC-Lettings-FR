@@ -12,6 +12,11 @@ executors:
     docker:
       - image: docker:stable
 
+# Using circleci's heroku orb to simplify deployement calling job heroku/deploy-via-git
+# Environments variables HEROKU_API_KEY & HEROKU_APP_NAME required in CircleCi's project
+orbs:
+  heroku: circleci/heroku@0.0.10
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
@@ -59,10 +64,10 @@ workflows:
             branches:
               only:
                 - main
-      # - deploy-to-host:
-      #     requires:
-      #       - push-docker
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
+      - heroku/deploy-via-git:  
+          requires:
+            - build-docker
+          filters:
+            branches:
+              only:
+                - main
