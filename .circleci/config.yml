@@ -48,17 +48,20 @@ jobs:
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
             docker push $IMAGE_TAG:latest
-  deploy:
+  deploy-heroku:
     executor: heroku/default
     steps:
       - checkout
       - heroku/install
-      - run :
-          name: Build and push Docker image to Heroku
-          command: |
-            HEROKU_API_KEY=$HEROKU_API_KEY heroku container:login
-            HEROKU_API_KEY=$HEROKU_API_KEY heroku container:push -a oc-lettings-demo web
-            HEROKU_API_KEY=$HEROKU_API_KEY heroku container:release -a oc-lettings-demo web       
+      - heroku/check-authentication
+      - heroku/push-docker-image
+      - heroku/release-docker-image
+      # - run :
+      #     name: Build and push Docker image to Heroku
+      #     command: |
+      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:login
+      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:push -a oc-lettings-demo web
+      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:release -a oc-lettings-demo web       
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -73,7 +76,7 @@ workflows:
             branches:
               only:
                 - main
-      - deploy:  
+      - deploy-heroku:  
           requires:
             - build-docker
           filters:
