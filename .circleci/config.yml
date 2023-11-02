@@ -2,6 +2,8 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
+orbs:
+  heroku: circleci/heroku@2.0.0
 
 # Define a common Docker container and environment for jobs
 executors:
@@ -47,15 +49,13 @@ jobs:
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
             docker push $IMAGE_TAG:latest
   deploy:
-    docker:
-      - image: docker:stable
+    executor: heroku/default
     steps:
       - checkout
+      - heroku/install
       - run :
           name: Build and push Docker image to Heroku
           command: |
-            apk update && apk add curl curl-dev bash
-            curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=$HEROKU_API_KEY heroku container:login
             HEROKU_API_KEY=$HEROKU_API_KEY heroku container:push -a oc-lettings-demo web
             HEROKU_API_KEY=$HEROKU_API_KEY heroku container:release -a oc-lettings-demo web       
