@@ -48,15 +48,15 @@ jobs:
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
             docker push $IMAGE_TAG:latest
-  deploy-heroku:
-    executor: heroku/default
-    steps:
-      - checkout
-      - heroku/install
-      - heroku/check-authentication
-      - setup_remote_docker
-      - heroku/push-docker-image
-      - heroku/release-docker-image
+  # deploy-heroku:
+  #   executor: heroku/default
+  #   steps:
+  #     - checkout
+  #     - heroku/install
+  #     - heroku/check-authentication
+  #     - setup_remote_docker
+  #     - heroku/push-docker-image
+  #     - heroku/release-docker-image
       # - run :
       #     name: Build and push Docker image to Heroku
       #     command: |
@@ -77,7 +77,7 @@ workflows:
             branches:
               only:
                 - main
-      - deploy-heroku:  
+      - heroku/push-docker-image:  
           requires:
             - build-docker
           filters:
