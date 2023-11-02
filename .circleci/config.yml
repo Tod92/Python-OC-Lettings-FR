@@ -54,6 +54,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/check-authentication
+      - setup_remote_docker
       - heroku/push-docker-image
       - heroku/release-docker-image
       # - run :
