@@ -48,21 +48,18 @@ jobs:
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
             docker push $IMAGE_TAG:latest
-  # deploy-heroku:
-  #   executor: heroku/default
-  #   steps:
-  #     - checkout
-  #     - heroku/install
-  #     - heroku/check-authentication
-  #     - setup_remote_docker
-  #     - heroku/push-docker-image
-  #     - heroku/release-docker-image
-      # - run :
-      #     name: Build and push Docker image to Heroku
-      #     command: |
-      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:login
-      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:push -a oc-lettings-demo web
-      #       HEROKU_API_KEY=$HEROKU_API_KEY heroku container:release -a oc-lettings-demo web       
+  deploy-heroku:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/check-authentication
+      - setup_remote_docker
+      - run :
+          name: Build and push Docker image to Heroku
+          command: |
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a oc-lettings-demo web
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a oc-lettings-demo web       
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -77,12 +74,13 @@ workflows:
             branches:
               only:
                 - main
-      - heroku/push-docker-image:
-          pre-steps:
-            - setup_remote_docker
+      - deploy-heroku:
           requires:
             - build-docker
           filters:
             branches:
               only:
                 - main
+      # - heroku/push-docker-image:
+      #     pre-steps:
+      #       - setup_remote_docker
