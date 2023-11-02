@@ -59,6 +59,7 @@ jobs:
           name: Pull from dockerHub and push Docker image to Heroku
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
             docker pull tod92/oc-lettings
             docker tag tod92/oc-lettings:latest registry.heroku.com/oc-lettings-demo/web
             docker push registry.heroku.com/oc-lettings-demo/web
