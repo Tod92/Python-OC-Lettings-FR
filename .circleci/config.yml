@@ -56,10 +56,12 @@ jobs:
       - heroku/check-authentication
       - setup_remote_docker
       - run :
-          name: Build and push Docker image to Heroku
+          name: Pull from dockerHub and push Docker image to Heroku
           command: |
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a oc-lettings-demo web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a oc-lettings-demo web       
+            docker pull tod92/oc-lettings
+            docker tag tod92/oc-lettings:latest registry.heroku.com/oc-lettings-demo/web
+            docker push registry.heroku.com/oc-lettings-demo/web
+            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release web       
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
