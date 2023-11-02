@@ -79,7 +79,7 @@ workflows:
                 - main
       - heroku/push-docker-image:
           pre-steps:
-            - run : setup_remote_docker
+            - setup_remote_docker
           requires:
             - build-docker
           filters:
