@@ -85,6 +85,3 @@ workflows:
             branches:
               only:
                 - main
-      # - heroku/push-docker-image:
-      #     pre-steps:
-      #       - setup_remote_docker
