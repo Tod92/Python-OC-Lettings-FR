@@ -1,4 +1,4 @@
-Modules
+Django's Modules
 =====================
 
 .. toctree::

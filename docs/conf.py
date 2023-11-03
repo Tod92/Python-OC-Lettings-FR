@@ -19,7 +19,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
 django.setup()
 
 
-project = 'oc-lettings'
+project = 'OC-Lettings'
 copyright = '2023, Thomas Deruere'
 author = 'Thomas Deruere'
 release = '0.1'
