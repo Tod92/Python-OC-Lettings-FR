@@ -1,5 +1,6 @@
 import os
 import sys
+import django
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -15,7 +16,6 @@ sys.path.append(os.path.abspath('..'))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
 
 # Setup Django
-import django
 django.setup()
 
 
