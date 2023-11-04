@@ -2,3 +2,4 @@ django
 python-dotenv
 sentry-sdk
 sphinx-rtd-theme
+logging

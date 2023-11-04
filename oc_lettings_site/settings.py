@@ -1,6 +1,8 @@
 from dotenv import load_dotenv
 import os
 import sentry_sdk
+import logging
+from sentry_sdk.integrations.logging import LoggingIntegration
 from pathlib import Path
 
 # Initalizing dotenv to manage environment variables
@@ -132,4 +134,10 @@ sentry_sdk.init(
     # of sampled transactions.
     # We recommend adjusting this value in production.
     profiles_sample_rate=1.0,
+    integrations=[
+        LoggingIntegration(
+            level=logging.INFO,        # Capture info and above as breadcrumbs
+            event_level=logging.ERROR  # Send errors as events
+            ),
+    ],
 )
