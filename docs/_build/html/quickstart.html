@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setup &mdash; OC-Lettings 0.1 documentation</title>
+  <title>Quickstart &mdash; OC-Lettings 0.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Django’s Modules" href="modules.html" />
-    <link rel="prev" title="Welcome to OC-Lettings’s documentation!" href="index.html" /> 
+    <link rel="next" title="Navigate" href="usecases.html" />
+    <link rel="prev" title="Welcome to OC-Lettings documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,11 +44,17 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Setup</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#clone-github-repository">Clone GitHub repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-virtual-env-and-install-dependencies">Create virtual env and install dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-django-secret-key-environment-variable">Generate Django SECRET_KEY environment variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execute-site-in-local">Execute site in local</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="usecases.html">Navigate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecases.html#admin">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests and Linting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archi.html">App and Sql architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Django’s Modules</a></li>
 </ul>
 
@@ -66,9 +72,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Setup</li>
+      <li class="breadcrumb-item active">Quickstart</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/setup.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -76,13 +82,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="setup">
-<h1>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h1>
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
 <p>Requirements :</p>
 <ul class="simple">
 <li><p>Python 3.6 +</p></li>
-<li><p>Venv</p></li>
 <li><p>Pip</p></li>
+<li><p>Venv</p></li>
 <li><p>Github account</p></li>
 <li><p>Git CLI</p></li>
 <li><p>Sqlite3 CLI</p></li>
@@ -99,8 +105,27 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path/to/Python-OC-Lettings-FR</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> or, for Windows <code class="docutils literal notranslate"><span class="pre">venv\Scripts\activate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> or, for Windows : <code class="docutils literal notranslate"><span class="pre">venv\Scripts\activate</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+</ul>
+</section>
+<section id="generate-django-secret-key-environment-variable">
+<h2>Generate Django SECRET_KEY environment variable<a class="headerlink" href="#generate-django-secret-key-environment-variable" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use <a class="reference external" href="https://djecrety.ir/">https://djecrety.ir/</a> to generate your own secret key for Django</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path/to/Python-OC-Lettings-FR</span></code></p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file</p></li>
+<li><p>Edit file, add line <code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span> <span class="pre">=</span> <span class="pre">{Your</span> <span class="pre">generated</span> <span class="pre">secret</span> <span class="pre">key}</span></code> and save</p></li>
+</ul>
+</section>
+<section id="execute-site-in-local">
+<h2>Execute site in local<a class="headerlink" href="#execute-site-in-local" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/path/to/Python-OC-Lettings-FR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">venv/bin/activate</span></code> or, for Windows  : <code class="docutils literal notranslate"><span class="pre">venv\Scripts\activate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">runserver</span></code></p></li>
+<li><p>Open web browser to <a class="reference external" href="http://localhost:8000">http://localhost:8000</a></p></li>
+<li><p>Navigate into the app</p></li>
 </ul>
 </section>
 </section>
@@ -109,8 +134,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to OC-Lettings’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="modules.html" class="btn btn-neutral float-right" title="Django’s Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to OC-Lettings documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usecases.html" class="btn btn-neutral float-right" title="Navigate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
