@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI/CD Pipeline &mdash; OC-Lettings 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=2709fde1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Django’s Modules (auto-generated)" href="modules.html" />
+    <link rel="prev" title="App and Sql architecture" href="archi.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            OC-Lettings
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecases.html">Navigate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usecases.html#admin">Admin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Tests and Linting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archi.html">App and Sql architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CI/CD Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Django’s Modules (auto-generated)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">OC-Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CI/CD Pipeline</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/cicd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ci-cd-pipeline">
+<h1>CI/CD Pipeline<a class="headerlink" href="#ci-cd-pipeline" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>This project is pre-parametred to launch Continuous Integration and Continuous Deployement.</p>
+<dl class="simple">
+<dt>Tools used for CI/CD :</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>CircleCi <a class="reference external" href="https://app.circleci.com">https://app.circleci.com</a> :</dt><dd><p>CI/CD orchestrator based on Docker containers</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Docker <a class="reference external" href="https://www.docker.com">https://www.docker.com</a> :</dt><dd><p>Docker is a software platform that allows you to build, test, and deploy applications quickly. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>DockerHub <a class="reference external" href="https://hub.docker.com">https://hub.docker.com</a> :</dt><dd><p>Docker Hub is the world’s largest library and community for container images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Heroku <a class="reference external" href="https://www.heroku.com">https://www.heroku.com</a> :</dt><dd><p>Heroku is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Steps are as follow :</dt><dd><ul class="simple">
+<li><p>git push to Github</p></li>
+<li><p>CircleCi, linked to your github depositry, launch pipeline workflow</p></li>
+<li><p>Build : Python app gets installed and environment variables passed in it</p></li>
+<li><p>Test and Lint : pytest and flake8 are run. No futher steps will occur if any of them fail.</p></li>
+<li><p>After this point, the initial git push had to occur on main branch in order to launch next steps</p></li>
+<li><p>Build docker : Running web app gets build in a docker image. This image gets pushed to docker Hub</p></li>
+<li><p>Deploy : Docker image gets pushed to Heroku repositry and Heroku web app gets released</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>Prerequisites :</dt><dd><ul class="simple">
+<li><p>This documentation Quickstart procedure</p></li>
+<li><p>GitHub account with project linked to your local git deposit</p></li>
+<li><p>CircleCi account linked with your GitHub account</p></li>
+<li><p>DockerHub account with public repository named <code class="docutils literal notranslate"><span class="pre">youraccount/oc-lettings</span></code></p></li>
+<li><p>Heroku account with a web app created</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Create New Project in CircleCI and select from GitHub <code class="docutils literal notranslate"><span class="pre">Python-OC-Lettings-FR</span></code> repository</p></li>
+<li><p>Go to Project’s Settings, select Environment Variables</p></li>
+<li><dl class="simple">
+<dt>Add following environment variables :</dt><dd><ul>
+<li><p>SECRET_KEY : your django’s secret key (can be found in <code class="docutils literal notranslate"><span class="pre">path\to\Python-OC-Lettings-FR\.env</span></code>)</p></li>
+<li><p>DOCKERHUB_USERNAME : your DockerHub account username</p></li>
+<li><p>DOCKERHUB_PASS : your DockerHub account password</p></li>
+<li><p>HEROKU_API_KEY : your Heroku api key (can be found in Heroku Account settings)</p></li>
+<li><p>HEROKU_APP_NAME : your Heroku app name</p></li>
+<li><p>IMAGE_TAG : your docker image name in dockerhub <code class="docutils literal notranslate"><span class="pre">youraccount/oc-lettings</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> on main branch and check CircleCi Pipeline. If all steps are passed you can check your app running on Heroku.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="archi.html" class="btn btn-neutral float-left" title="App and Sql architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Django’s Modules (auto-generated)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Thomas Deruere.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

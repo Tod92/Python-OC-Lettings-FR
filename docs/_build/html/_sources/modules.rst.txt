@@ -1,5 +1,5 @@
-Django's Modules
-=====================
+Django's Modules (auto-generated)
+=================================
 
 .. toctree::
    :maxdepth: 4
