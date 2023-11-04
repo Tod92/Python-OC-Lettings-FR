@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from profiles.models import Profile
+from django.http import Http404
+import logging
 
 
 def index(request):
@@ -15,6 +17,10 @@ def profile(request, username):
     """
     Profile object detail page, called with object's id
     """
-    profile = Profile.objects.get(user__username=username)
+    try:
+        profile = Profile.objects.get(user__username=username)
+    except Profile.DoesNotExist:
+        logging.error(f'Not existing Profile name :{username}')
+        raise Http404
     context = {'profile': profile}
     return render(request, 'profiles/profile.html', context)
