@@ -5,16 +5,6 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@2.0.0
 
-# Define a common Docker container and environment for jobs
-executors:
-  docker-publisher:
-    # Define the image tag
-    environment:
-      IMAGE_TAG: tod92/oc-lettings
-    # Use `docker:stable` as the Docker image for this executor
-    docker:
-      - image: docker:stable
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
@@ -33,7 +23,8 @@ jobs:
           name: run tests
           command: pytest
   build-docker:
-    executor: docker-publisher
+    docker:
+      - image: docker:stable
     steps:
       # Checkout the repository files
       - checkout
@@ -61,8 +52,8 @@ jobs:
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
             docker pull tod92/oc-lettings
-            docker tag tod92/oc-lettings:latest registry.heroku.com/oc-lettings-demo/web
-            docker push registry.heroku.com/oc-lettings-demo/web
+            docker tag tod92/oc-lettings:latest registry.heroku.com/$HEROKU_APP_NAME/web
+            docker push registry.heroku.com/$HEROKU_APP_NAME/web
             heroku container:release -a $HEROKU_APP_NAME web 
 
 # Orchestrate jobs using workflows

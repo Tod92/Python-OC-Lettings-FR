@@ -39,6 +39,7 @@ Main Tools and packages
    Using the app <usecases>
    Tests and Linting <tests>
    App and Sql architecture <archi>
+   CI/CD Pipeline <cicd>
    modules
 
 
