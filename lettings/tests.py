@@ -1,7 +1,6 @@
 import pytest
 from lettings.models import Letting, Address
 from django.urls import reverse
-from django.http import Http404
 import logging
 
 
@@ -77,5 +76,5 @@ class TestHttpResponse:
         """
         Note that create_letting fixture has not been used here
         """
-        with pytest.raises(Http404):
-            client.get('/lettings/1/')
+        response = client.get('/lettings/1/')
+        assert response.status_code == 404
