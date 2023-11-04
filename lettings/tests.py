@@ -1,6 +1,8 @@
 import pytest
 from lettings.models import Letting, Address
 from django.urls import reverse
+from django.http import Http404
+import logging
 
 
 @pytest.fixture
@@ -49,6 +51,16 @@ class TestUrls:
 @pytest.mark.django_db
 class TestHttpResponse:
 
+    @classmethod
+    def setup_class(cls):
+        # Disable logging for this test class
+        logging.disable(logging.CRITICAL)
+
+    @classmethod
+    def teardown_class(cls):
+        # Reenable logging after tests
+        logging.disable(logging.NOTSET)
+
     def test_lettings_index_should_status_code_ok(self, client):
         response = client.get('/lettings/')
         assert response.status_code == 200
@@ -61,9 +73,9 @@ class TestHttpResponse:
         # content.find() returns -1 if not found
         assert content.find(expected_content) != -1
 
-    def test_unexisting_letting_object_should_raise_DoesNotExist(self, client):
+    def test_unexisting_letting_object_should_raise_HTTP404(self, client):
         """
         Note that create_letting fixture has not been used here
         """
-        with pytest.raises(Letting.DoesNotExist):
+        with pytest.raises(Http404):
             client.get('/lettings/1/')

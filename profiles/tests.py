@@ -1,6 +1,7 @@
 import pytest
 from profiles.models import Profile, User
 from django.urls import reverse
+import logging
 
 
 @pytest.fixture
@@ -43,6 +44,16 @@ class TestUrls:
 
 @pytest.mark.django_db
 class TestHttpResponse:
+
+    @classmethod
+    def setup_class(cls):
+        # Disable logging for this test class
+        logging.disable(logging.CRITICAL)
+
+    @classmethod
+    def teardown_class(cls):
+        # Reenable logging after tests
+        logging.disable(logging.NOTSET)
 
     def test_profiles_index_should_status_code_ok(self, client):
         response = client.get('/profiles/')
