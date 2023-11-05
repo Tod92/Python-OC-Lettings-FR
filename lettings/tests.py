@@ -78,3 +78,4 @@ class TestHttpResponse:
         """
         response = client.get('/lettings/1/')
         assert response.status_code == 404
+        assert 1 == 0
