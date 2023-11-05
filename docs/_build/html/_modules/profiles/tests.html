@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tests.html">Tests and Linting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../archi.html">App and Sql architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cicd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sentry.html">Sentry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">Django’s Modules (auto-generated)</a></li>
 </ul>
 
@@ -78,6 +79,7 @@
 <span></span><span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">from</span> <span class="nn">profiles.models</span> <span class="kn">import</span> <span class="n">Profile</span><span class="p">,</span> <span class="n">User</span>
 <span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 
 <div class="viewcode-block" id="create_user">
@@ -143,6 +145,22 @@
 <a class="viewcode-back" href="../../profiles.html#profiles.tests.TestHttpResponse">[docs]</a>
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">django_db</span>
 <span class="k">class</span> <span class="nc">TestHttpResponse</span><span class="p">:</span>
+
+<div class="viewcode-block" id="TestHttpResponse.setup_class">
+<a class="viewcode-back" href="../../profiles.html#profiles.tests.TestHttpResponse.setup_class">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># Disable logging for this test class</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TestHttpResponse.teardown_class">
+<a class="viewcode-back" href="../../profiles.html#profiles.tests.TestHttpResponse.teardown_class">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="c1"># Reenable logging after tests</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NOTSET</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="TestHttpResponse.test_profiles_index_should_status_code_ok">
 <a class="viewcode-back" href="../../profiles.html#profiles.tests.TestHttpResponse.test_profiles_index_should_status_code_ok">[docs]</a>

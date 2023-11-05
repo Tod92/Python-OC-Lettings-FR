@@ -40,6 +40,7 @@ Main Tools and packages
    Tests and Linting <tests>
    App and Sql architecture <archi>
    CI/CD Pipeline <cicd>
+   Sentry <sentry>
    modules
 
 

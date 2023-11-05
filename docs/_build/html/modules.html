@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="oc_lettings_site package" href="oc_lettings_site.html" />
-    <link rel="prev" title="CI/CD Pipeline" href="cicd.html" /> 
+    <link rel="prev" title="Sentry" href="sentry.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,6 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="tests.html">Tests and Linting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="archi.html">App and Sql architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cicd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sentry.html">Sentry</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Django’s Modules (auto-generated)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="oc_lettings_site.html">oc_lettings_site package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lettings.html">lettings package</a></li>
@@ -180,9 +181,11 @@
 <li class="toctree-l2"><a class="reference internal" href="lettings.html#module-lettings.tests">lettings.tests module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.pytestmark"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.pytestmark</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.setup_class"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.setup_class()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.teardown_class"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.teardown_class()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.test_existing_letting_object_should_status_code_ok"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_existing_letting_object_should_status_code_ok()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.test_lettings_index_should_status_code_ok"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_lettings_index_should_status_code_ok()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.test_unexisting_letting_object_should_raise_DoesNotExist"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_unexisting_letting_object_should_raise_DoesNotExist()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lettings.html#lettings.tests.TestHttpResponse.test_unexisting_letting_object_should_raise_HTTP404"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_unexisting_letting_object_should_raise_HTTP404()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="lettings.html#lettings.tests.TestModels"><code class="docutils literal notranslate"><span class="pre">TestModels</span></code></a><ul>
@@ -244,6 +247,8 @@
 <li class="toctree-l2"><a class="reference internal" href="profiles.html#module-profiles.tests">profiles.tests module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.pytestmark"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.pytestmark</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.setup_class"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.setup_class()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.teardown_class"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.teardown_class()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.test_existing_profile_object_should_status_code_ok"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_existing_profile_object_should_status_code_ok()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.test_profiles_index_should_status_code_ok"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_profiles_index_should_status_code_ok()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="profiles.html#profiles.tests.TestHttpResponse.test_unexisting_letting_object_should_raise_DoesNotExist"><code class="docutils literal notranslate"><span class="pre">TestHttpResponse.test_unexisting_letting_object_should_raise_DoesNotExist()</span></code></a></li>
@@ -281,7 +286,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="cicd.html" class="btn btn-neutral float-left" title="CI/CD Pipeline" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sentry.html" class="btn btn-neutral float-left" title="Sentry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="oc_lettings_site.html" class="btn btn-neutral float-right" title="oc_lettings_site package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

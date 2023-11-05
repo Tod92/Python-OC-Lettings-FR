@@ -47,6 +47,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../tests.html">Tests and Linting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../archi.html">App and Sql architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cicd.html">CI/CD Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sentry.html">Sentry</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">Django’s Modules (auto-generated)</a></li>
 </ul>
 
@@ -77,6 +78,8 @@
   <h1>Source code for lettings.views</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
 <span class="kn">from</span> <span class="nn">lettings.models</span> <span class="kn">import</span> <span class="n">Letting</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">Http404</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 
 <div class="viewcode-block" id="index">
@@ -97,7 +100,11 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Letting object detail page, called with object&#39;s id</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">letting</span> <span class="o">=</span> <span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">letting_id</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">letting</span> <span class="o">=</span> <span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">letting_id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">Letting</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Not existing Letting ID :</span><span class="si">{</span><span class="n">letting_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">Http404</span>
     <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
         <span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
