@@ -21,7 +21,15 @@ jobs:
           command: flake8
       - run:
           name: run tests
-          command: pytest
+          command: coverage run -m pytest
+      - run:
+          name: Check Test Coverage
+          command: |
+            coverage=$(coverage report -m | grep TOTAL | awk '{print $4}')
+            if [ "$coverage" \< 80 ]; then
+              echo "Test coverage is below 80% ($coverage%)"
+              exit 1
+            fi
   build-docker:
     docker:
       - image: docker:stable
@@ -71,6 +79,7 @@ workflows:
             branches:
               only:
                 - main
+                - develop
       - deploy-heroku:
           requires:
             - build-docker

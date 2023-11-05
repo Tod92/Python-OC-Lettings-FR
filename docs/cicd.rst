@@ -19,9 +19,9 @@ Steps are as follow :
     - CircleCi, linked to your github depositry, launch pipeline workflow
     - Build : Python app gets installed and environment variables passed in it
     - Test and Lint : pytest and flake8 are run. No futher steps will occur if any of them fail.
-    - After this point, the initial git push had to occur on main branch in order to launch next steps
-    - Build docker : Running web app gets build in a docker image. This image gets pushed to docker Hub
-    - Deploy : Docker image gets pushed to Heroku repositry and Heroku web app gets released
+    - After this point, the initial git push had to occur on specific branch in order to launch next steps
+    - Build docker (Branch develop and main): Running web app gets build in a docker image. This image gets pushed to docker Hub
+    - Deploy (Branch main only): Docker image gets pushed to Heroku repositry and Heroku web app gets released
 
 Setup
 -----
