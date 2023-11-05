@@ -67,9 +67,9 @@ class TestHttpResponse:
         # content.find() returns -1 if not found
         assert content.find(expected_content) != -1
 
-    def test_unexisting_letting_object_should_raise_DoesNotExist(self, client):
+    def test_unexisting_profile_object_should_raise_HTTP404(self, client):
         """
-        Note that create_letting fixture has not been used here
+        Note that create_profile fixture has not been used here
         """
-        with pytest.raises(Profile.DoesNotExist):
-            client.get('/profiles/toto/')
+        response = client.get('/profiles/toto/')
+        assert response.status_code == 404
