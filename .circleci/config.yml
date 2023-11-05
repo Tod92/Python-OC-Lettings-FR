@@ -8,6 +8,7 @@ orbs:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
+  # Lint Tests and Coverage will exit worklow if not successfull
   test-and-lint:
     docker:
       - image: cimg/python:3.10.1
@@ -26,12 +27,13 @@ jobs:
           name: Check Tests Coverage
           command: |
             coverage=$(coverage report -m | grep TOTAL | awk '{print $4}')
-            echo "Tests coverage is $coverage %"
+            echo "Tests coverage is $coverage"
             if [ "$coverage" \< 80 ]; then
-              echo "Tests coverage is below 80% ($coverage %)"
+              echo "Tests coverage is below 80% ($coverage)"
               exit 1
             fi
   build-docker:
+    # Building Docker image and pushing it to DockerHub
     docker:
       - image: docker:stable
     steps:
@@ -51,6 +53,7 @@ jobs:
             docker push $IMAGE_TAG:${CIRCLE_SHA1}
             docker push $IMAGE_TAG:latest
   deploy-heroku:
+    # Pulling image from DockerHub then push and release on Heroku
     executor: heroku/default
     steps:
       - checkout
