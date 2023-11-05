@@ -23,11 +23,12 @@ jobs:
           name: run tests
           command: coverage run -m pytest
       - run:
-          name: Check Test Coverage
+          name: Check Tests Coverage
           command: |
             coverage=$(coverage report -m | grep TOTAL | awk '{print $4}')
+            echo "Tests coverage is $coverage %"
             if [ "$coverage" \< 80 ]; then
-              echo "Test coverage is below 80% ($coverage%)"
+              echo "Tests coverage is below 80% ($coverage %)"
               exit 1
             fi
   build-docker:
