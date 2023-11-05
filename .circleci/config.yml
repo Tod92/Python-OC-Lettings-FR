@@ -38,6 +38,7 @@ jobs:
           name: Push Docker image
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USERNAME --password-stdin
+            docker tag $IMAGE_TAG:${CIRCLE_SHA1} $IMAGE_TAG:latest
             docker push $IMAGE_TAG:${CIRCLE_SHA1}
             docker push $IMAGE_TAG:latest
   deploy-heroku:
